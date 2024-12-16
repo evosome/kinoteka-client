@@ -1,20 +1,20 @@
-import { Stack, Typography } from "@mui/material";
+
 import { FC } from "react";
 import {
   SessionDetailsContainer,
   SessionItemContainer,
   SessionTimesListContainer,
 } from "./styles";
-import { MovieCover } from "../../components/movies/movie-cover";
+import { MovieCover } from "@components/movies/movie-cover";
 import { SessionItemProps } from "./types";
-import { MovieDetails } from "../../components/movies/movie-details";
+import { MovieDetails } from "@components/movies/movie-details";
 import SessionTimesList from "./SessionTimesList";
 
 const SessionGroup: FC<SessionItemProps> = ({ session }) => {
   return (
     <SessionItemContainer gap={2} direction="row">
       <SessionDetailsContainer>
-        <MovieCover movie={session.movie} />
+        <MovieCover withAgeRestriction movie={session.movie} />
         <MovieDetails movie={session.movie} />
       </SessionDetailsContainer>
       <SessionTimesListContainer>

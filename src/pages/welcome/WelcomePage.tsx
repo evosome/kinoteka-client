@@ -1,9 +1,13 @@
-import { FC } from "react";
+import { FC, useCallback, useEffect } from "react";
 import { WelcomePageContainer } from "./styles";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { WelcomeText } from "./components/welcome-text";
+import { useGetCinemas } from "@app/hooks/api";
 
 const WelcomePage: FC<{}> = () => {
+
+  const { isLoading, cinemas } = useGetCinemas();
+
   return (
     <WelcomePageContainer>
         <Stack gap='8px'>

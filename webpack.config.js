@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -34,10 +35,10 @@ module.exports = {
     ],
   },
   resolve: {
+    plugins: [
+      new TsconfigPathsPlugin({ }),
+    ],
     extensions: ['.tsx', '.ts', '.js'],
-    alias: {
-        '@assets': path.resolve(__dirname, 'assets/')
-    },
   },
   devServer: {
     historyApiFallback: true,

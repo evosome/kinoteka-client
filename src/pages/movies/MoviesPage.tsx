@@ -1,10 +1,10 @@
 
-import { FC, SyntheticEvent, useCallback, useState } from "react";
-import { Box, ContainerProps, Stack, Tab, Tabs } from "@mui/material";
+import { FC, SyntheticEvent, useState } from "react";
+import { Box, ContainerProps, Tab, Tabs } from "@mui/material";
 import { MoviesPageContainer } from "./styles";
 import MovieList from "./components/movie-list/MovieList";
 import { Movie } from "@app/types/movie";
-import { MOVIES_NOW, MOVIES_SOON } from "../../constants";
+import { MOVIES_NOW, MOVIES_SOON } from "@app/constants";
 
 interface MoviePanelProps {
   index: number;

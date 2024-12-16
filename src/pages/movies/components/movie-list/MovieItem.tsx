@@ -1,20 +1,15 @@
-
 import { FC } from "react";
 import { MovieItemProps } from "./types";
-import { MovieAgeRestrictionChip, MovieImageCover, MovieItemContainer } from "./styles";
-import { Typography } from "@mui/material";
+import { MovieCover } from "@components/movies/movie-cover";
 
 const MovieItem: FC<MovieItemProps> = ({ movie }) => {
-    return (
-        <MovieItemContainer>
-            <MovieAgeRestrictionChip>
-                <Typography>
-                    { movie.ageRestriction ?? '?' }
-                </Typography>
-            </MovieAgeRestrictionChip>
-            <MovieImageCover src={movie.coverUrl}/>
-        </MovieItemContainer>
-    )
+  return (
+    <MovieCover
+      withAgeRestriction
+      withAnimation
+      needOpenMoviePage
+      movie={movie}/>
+  );
 };
 
 export default MovieItem;

@@ -1,10 +1,19 @@
 
+export interface Genre {
+    name: string;
+}
+
 export interface Movie {
+    id: string;
+    type: string;
     name: string;
     description?: string;
     coverUrl?: string;
     ageRestriction?: string;
     publishYear?: string;
+    publishCountry?: string;
+    genres?: Genre[];
+    galleryUrls?: string[];
 }
 
 export interface SessionTime {

@@ -6,7 +6,7 @@ const EvosomeKinotekaTheme = createTheme({
   },
 
   paddings: {
-    pageContentTopPadding: "16px",
+    pageContentTopPadding: "48px",
   },
 
   components: {
@@ -21,7 +21,7 @@ const EvosomeKinotekaTheme = createTheme({
     MuiDivider: {
       styleOverrides: {
         root: {
-          borderColor: 'rgba(255, 255, 255, 0.10)',
+          borderColor: 'rgba(132, 132, 132, 0.6)',
         }
       }
     },

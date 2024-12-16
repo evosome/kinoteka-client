@@ -1,0 +1,2 @@
+
+export { useGetCinemas } from "./cinemas";

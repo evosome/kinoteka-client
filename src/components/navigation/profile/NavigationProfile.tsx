@@ -1,16 +1,22 @@
-import { Avatar, Button, Link, Stack } from "@mui/material";
+import { Avatar, Link, Stack } from "@mui/material";
 import { FC } from "react";
+import { NavigationProfileProps } from "./types";
 
-const NavigationProfile: FC<{}> = () => {
+const NavigationProfile: FC<NavigationProfileProps> = ({ user }) => {
+  const {
+    name,
+    surname,
+    details
+  } = user;
   return (
     <Stack
       gap="8px"
       alignItems="center"
       justifyContent="center"
       direction="column">
-      <Avatar></Avatar>
+      <Avatar src={details.avatarUrl}/>
       <Link textAlign="center" href="/movies">
-        Alexander Chibizov
+        {name} {surname}
       </Link>
     </Stack>
   );

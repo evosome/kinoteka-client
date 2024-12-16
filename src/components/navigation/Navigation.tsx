@@ -5,6 +5,7 @@ import { KinotekaLogotype } from "./logotype";
 import { NavigationContainer } from "./styles";
 import { NavigationButtons } from "./buttons";
 import { NavigationProfile } from "./profile";
+import { USERS } from "@app/constants";
 
 const Navigation: FC<{}> = () => {
   return (
@@ -18,7 +19,7 @@ const Navigation: FC<{}> = () => {
       >
         <KinotekaLogotype/>
         <NavigationButtons/>
-        <NavigationProfile/>
+        <NavigationProfile user={USERS[0]}/>
       </Stack>
     </NavigationContainer>
   );

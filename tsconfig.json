@@ -16,10 +16,12 @@
         "isolatedModules": true,
         "noEmit": false,
         "jsx": "react-jsx",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "paths": {
-            "@app/*": ["./src/*"],
-            "@assets/*": ["./assets/*"],
-            "@components/*": ["./src/components/*"]
+            "@app/*": ["src/*"],
+            "@assets/*": ["assets/*"],
+            "@components/*": ["src/components/*"]
         },
     },
     "include": ["src", "src/typings.d.ts", "src/themes/theming.d.ts"],

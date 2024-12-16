@@ -3,7 +3,7 @@ import { FC } from "react";
 import { SessionsPageContainer } from "./styles";
 import { Button, Stack } from "@mui/material";
 import SessionGroup from "./SessionGroup";
-import { SESSIONS } from "../../constants";
+import { SESSIONS } from "@app/constants";
 
 const SessionsPage: FC<{}> = () => {
     return (
