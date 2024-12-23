@@ -6,5 +6,5 @@ export interface MovieItemProps {
 }
 
 export interface MovieListProps {
-    movies: Movie[];
+    showReleased?: boolean;
 };

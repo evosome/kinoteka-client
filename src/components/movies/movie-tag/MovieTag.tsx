@@ -4,9 +4,9 @@ import { MovieTagContainer } from "./styles";
 import { MovieTagProps } from "./types";
 import { Typography } from "@mui/material";
 
-const MovieTag: FC<MovieTagProps> = ({ label }) => {
+const MovieTag: FC<MovieTagProps> = ({ label, customColor }) => {
     return (
-        <MovieTagContainer>
+        <MovieTagContainer customColor={customColor}>
             <Typography variant="caption">
                 {label}
             </Typography>

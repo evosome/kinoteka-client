@@ -3,6 +3,7 @@ import { Button, Paper, Stack, Typography } from "@mui/material";
 
 import { WelcomeContainer, WelcomeImage } from "./styles";
 import { Glasses3DOutlined } from "@assets/icons";
+import { Link } from "@app/components/common/link";
 
 const WelcomeText: FC<{}> = () => {
   return (
@@ -12,15 +13,19 @@ const WelcomeText: FC<{}> = () => {
       </Stack>
       <Stack justifyContent="center" gap={4}>
         <Stack>
-          <Typography variant="subPoster">Welcome to</Typography>
+          <Typography variant="subPoster">Добро пожаловать в</Typography>
           <Stack gap={2} direction="row" alignItems="center">
             <Typography variant="poster">Platform Kinoteka</Typography>
             <Glasses3DOutlined width="8vw" />
           </Stack>
         </Stack>
         <Stack gap={2} direction="row">
-          <Button href="/movies">Movies today</Button>
-          <Button>Sessions</Button>
+          <Link forwardTo="/movies">
+            <Button>Фильмы</Button>
+          </Link>
+          <Link forwardTo="/sessions">
+            <Button>Сеансы</Button>
+          </Link>
         </Stack>
       </Stack>
     </WelcomeContainer>

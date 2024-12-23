@@ -5,6 +5,7 @@ import MainLayout from "./MainLayout";
 import { WelcomePage } from "../pages/welcome";
 import { MovieDetailsPage } from "../pages/movie-details/";
 import ErrorPage from "@app/pages/error/ErrorPage";
+import { UserDetails } from "@app/pages/user-details";
 
 const Router = createBrowserRouter([
     {
@@ -15,7 +16,8 @@ const Router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <MoviesPage/>
+                        element: <MoviesPage/>,
+                        errorElement: <ErrorPage/>
                     },
                     {
                         path: ":id",
@@ -24,6 +26,7 @@ const Router = createBrowserRouter([
                 ]
             },
             { path: "/movies:id", element: <MovieDetailsPage /> },
+            { path: "/user", element: <UserDetails/> },
             { path: "/sessions", element: <SessionsPage /> },
             { path: "/", element: <WelcomePage />, errorElement: <ErrorPage/> }
         ],

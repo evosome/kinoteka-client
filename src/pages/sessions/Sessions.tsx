@@ -3,7 +3,6 @@ import { FC } from "react";
 import { SessionsPageContainer } from "./styles";
 import { Button, Stack } from "@mui/material";
 import SessionGroup from "./SessionGroup";
-import { SESSIONS } from "@app/constants";
 
 const SessionsPage: FC<{}> = () => {
     return (
@@ -14,7 +13,7 @@ const SessionsPage: FC<{}> = () => {
                 </Button>
             </Stack>
             <Stack>
-                { SESSIONS.map((session) => <SessionGroup session={session}/>) }
+                {/* { SESSIONS.map((session) => <SessionGroup session={session}/>) } */}
             </Stack>
         </SessionsPageContainer>
     );

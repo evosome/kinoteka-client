@@ -15,6 +15,9 @@ const MovieDetails: FC<MovieDetailsProps> = ({ movie }) => {
         <Stack gap={1} minWidth="512px">
           <Stack>
             <Stack gap={1} direction="row">
+              {!movie.released && (
+                <MovieTag label="Еще не вышел" customColor="#a32858" />
+              )}
               {movie.genres &&
                 movie.genres.map((g) => <MovieTag label={g.name} />)}
             </Stack>
@@ -23,9 +26,17 @@ const MovieDetails: FC<MovieDetailsProps> = ({ movie }) => {
             </Typography>
           </Stack>
           <Stack>
-            <Typography>
-              {movie.type}, {movie.publishYear}, {movie.publishCountry}
-            </Typography>
+            <Stack>
+              <Typography>{movie.publishYear},</Typography>
+              <Stack gap={2} direction="row">
+                {movie.publishCountries?.map((country) => (
+                  <Stack gap={1} alignItems="center" direction="row">
+                    <img width="32" src={country.iconUrl} />
+                    <Typography>{country.name}</Typography>
+                  </Stack>
+                ))}
+              </Stack>
+            </Stack>
             <Typography
               maxWidth={512}
               style={{ wordBreak: "normal" }}

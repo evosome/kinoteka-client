@@ -1,6 +1,6 @@
 
 
-import { styled } from "@mui/material";
+import { Stack, styled } from "@mui/material";
 
 export const WelcomePageContainer = styled('div', {
     name: 'WelcomePageContainer',
@@ -10,4 +10,13 @@ export const WelcomePageContainer = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
+}));
+
+export const WelcomePageFooterContainer = styled(Stack)(({ theme }) => ({
+    marginLeft: '-64px',
+    marginRight: '-64px',
+    padding: '8px',
+    display: 'flex',
+    minHeight: '128px',
+    backgroundColor: '#000'
 }));

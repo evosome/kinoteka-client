@@ -6,6 +6,7 @@ export interface UserDetails {
 }
 
 export interface User {
+    id: number;
     name: string;
     surname: string;
     details: UserDetails;

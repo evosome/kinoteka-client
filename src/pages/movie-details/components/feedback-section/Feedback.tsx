@@ -1,16 +1,30 @@
+import { MovieFeedback } from "@app/types/movie";
 import { Avatar, Rating, Stack, Typography } from "@mui/material";
 import { FC } from "react";
 
-const Feedback: FC<{}> = () => {
+const Feedback: FC<{ feedback: MovieFeedback; isYou?: boolean }> = ({
+  feedback,
+  isYou,
+}) => {
   return (
-    <Stack padding={2} gap={2} direction="row">
+    <Stack
+      sx={{ backgroundColor: isYou ? "#f4f4f4" : "#fff" }}
+      padding={2}
+      gap={2}
+      direction="row"
+    >
       <Stack justifyContent="center">
-        <Avatar src="https://sun9-14.userapi.com/impg/vQj_YhrdMvx0dic_9Xc6AZz4ZSLzFzN3pu2zrQ/bTZioPVtt_M.jpg?size=640x640&quality=96&sign=2e1cb6632900d118406d3875b7608339&type=album" sx={{ width: 48, height: 48 }}/>
+        <Avatar
+          src={feedback.user.details.avatarUrl}
+          sx={{ width: 48, height: 48 }}
+        />
       </Stack>
       <Stack>
-        <Typography>Pavel Salatov</Typography>
-        <Rating readOnly value={4}/>
-        <Typography>мультик бомба</Typography>
+        <Typography>
+          {feedback.user.name} {feedback.user.surname} {isYou ? "(Вы)" : ""}
+        </Typography>
+        <Rating readOnly value={feedback.mark} />
+        <Typography>{feedback.text}</Typography>
       </Stack>
     </Stack>
   );

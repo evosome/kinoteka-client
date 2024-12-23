@@ -2,12 +2,12 @@ import { Navigation } from "../components/navigation";
 import { FC } from "react";
 import { Outlet } from "react-router";
 import { OutletContainer } from "./styles";
-import { ErrorBoundary } from "react-error-boundary";
-import { QueryErrorResetBoundary } from "react-query";
+import ScrollToAnchor from "./ScrollToAnchor";
 
 const MainLayout: FC<{}> = () => {
   return (
     <>
+      <ScrollToAnchor />
       <Navigation />
       <OutletContainer>
         <Outlet />

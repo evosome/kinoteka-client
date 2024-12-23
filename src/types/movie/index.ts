@@ -1,19 +1,34 @@
+import { User } from "../user";
 
 export interface Genre {
     name: string;
 }
 
 export interface Movie {
-    id: string;
+    id: number;
     type: string;
     name: string;
     description?: string;
     coverUrl?: string;
     ageRestriction?: string;
-    publishYear?: string;
-    publishCountry?: string;
+    publishYear?: number;
+    publishCountries?: MovieCountry[];
     genres?: Genre[];
     galleryUrls?: string[];
+    boxOffice?: boolean;
+    released?: boolean;
+}
+
+export interface MovieFeedback {
+    id: number;
+    mark: number;
+    text: string;
+    user: User;
+}
+
+export interface MovieCountry {
+    name: string;
+    iconUrl: string;
 }
 
 export interface SessionTime {

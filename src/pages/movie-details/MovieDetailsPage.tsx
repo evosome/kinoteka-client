@@ -2,20 +2,29 @@ import { FC, useMemo } from "react";
 import { MovieDetailsPageContainer } from "./styles";
 import MovieDetails from "./components/movie-details/MovieDetails";
 import { useRouterParams } from "@app/hooks";
-import { MOVIES_NOW, USERS } from "@app/constants";
 import { MovieNotFound } from "./components/movie-not-found";
-import { Divider } from "@mui/material";
+import { CircularProgress, Divider } from "@mui/material";
 import { FeedbackSection } from "./components/feedback-section";
+import { useGetMovie } from "@app/hooks/api";
 
 const MovieDetailsPage: FC<{}> = () => {
   const { id } = useRouterParams();
-  const foundMovie = useMemo(() => MOVIES_NOW.find((m) => m.id === id), [id]);
+  const { isLoading, movie } = useGetMovie({ id: parseInt(id!) });
+  
+  if (isLoading) {
+    return (
+      <MovieDetailsPageContainer>
+        <CircularProgress/>
+      </MovieDetailsPageContainer>
+    )
+  }
+  
   return (
     <>
-      {foundMovie ? (
+      {movie ? (
         <MovieDetailsPageContainer gap={8}>
-          <MovieDetails movie={foundMovie} />
-          <FeedbackSection user={USERS[0]}/>
+          <MovieDetails movie={movie} />
+          <FeedbackSection movie={movie}/>
         </MovieDetailsPageContainer>
       ) : (
         <MovieNotFound />

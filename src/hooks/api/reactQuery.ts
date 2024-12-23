@@ -14,10 +14,9 @@ import { api } from "./axios";
 type QueryKeyT = [string, object | undefined];
 
 export interface GetInfinitePagesInterface<T> {
-  nextId?: number;
-  previousId?: number;
-  data: T;
-  count: number;
+  number: number;
+  content: T;
+  totalElements: number;
 }
 
 export const fetcher = <T>({
@@ -42,9 +41,10 @@ export const useLoadMore = <T>(url: string | null, params?: object) => {
     [url!, params],
     ({ queryKey, pageParam = 1 }) => fetcher({ queryKey, pageParam }),
     {
-      getPreviousPageParam: (firstPage) => firstPage.previousId ?? false,
+      getPreviousPageParam: (firstPage) =>
+        firstPage.number - 1,
       getNextPageParam: (lastPage) => {
-        return lastPage.nextId ?? false;
+        return lastPage.number + 1;
       },
     }
   );
@@ -77,6 +77,7 @@ export const useFetch = <T>(
     ({ queryKey }) => fetcher({ queryKey }),
     {
       enabled: !!url,
+      refetchOnMount: true,
       ...config,
     }
   );

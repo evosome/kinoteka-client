@@ -1,6 +1,14 @@
 
-const GATEWAY = "http://77.246.158.84:8000";
+const LOCAL_GATEWAY = "http://localhost:8000";
+const REMOTE_GATEWAY = "http://77.246.158.84:8000";
+
+const GATEWAY = REMOTE_GATEWAY;
 
 export const API_ROUTES = {
-    cinemas: `${GATEWAY}/api1/v1/cinemas`
+    login: `${GATEWAY}/login`,
+    logout: `${GATEWAY}/logout`,
+    cinemas: `${GATEWAY}/api1/v1/cinemas`,
+    movies: `${GATEWAY}/api1/v1/film`,
+    users: `${GATEWAY}/api1/v1/movieUser`,
+    feedbacks: `${GATEWAY}/api1/v1/feedback`
 }

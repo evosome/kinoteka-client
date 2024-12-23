@@ -3,14 +3,11 @@ import { FC, SyntheticEvent, useState } from "react";
 import { Box, ContainerProps, Tab, Tabs } from "@mui/material";
 import { MoviesPageContainer } from "./styles";
 import MovieList from "./components/movie-list/MovieList";
-import { Movie } from "@app/types/movie";
-import { MOVIES_NOW, MOVIES_SOON } from "@app/constants";
 
 interface MoviePanelProps {
   index: number;
   selectedIndex: number;
 }
-
 
 const MoviePanel: FC<MoviePanelProps & ContainerProps> = (props) => {
   const { index, selectedIndex, children } = props;
@@ -36,10 +33,10 @@ const MoviesPage: FC<{}> = () => {
         <Tab label="Soon"/>
       </Tabs>
       <MoviePanel index={0} selectedIndex={selectedTab}>
-        <MovieList movies={MOVIES_NOW}/>
+        <MovieList showReleased/>
       </MoviePanel>
       <MoviePanel index={1} selectedIndex={selectedTab}>
-        <MovieList movies={MOVIES_SOON}/>
+        <MovieList/>
       </MoviePanel>
     </MoviesPageContainer>
   );
