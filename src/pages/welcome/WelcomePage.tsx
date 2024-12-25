@@ -45,7 +45,7 @@ const WelcomePage: FC<{}> = () => {
                 Егор Аксенов - Backend
               </Typography>
               <Typography variant="caption" color="#fff">
-                Павел Конарев - мотиватор
+                Павел Конарев - помощник Backend разработки
               </Typography>
             </Stack>
             <Stack direction="row" alignItems="center">

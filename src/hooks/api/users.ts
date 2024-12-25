@@ -141,7 +141,7 @@ export const useRegister = () => {
       surname: string;
     }) => {
       api
-        .post(API_ROUTES.logout, { username, password, name, surName: surname })
+        .post(API_ROUTES.register, { username, password, name, surName: surname })
         .then((responce) => {
           setStatus(true);
         });

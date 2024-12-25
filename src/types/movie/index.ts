@@ -17,6 +17,7 @@ export interface Movie {
     galleryUrls?: string[];
     boxOffice?: boolean;
     released?: boolean;
+    sessions?: Session[];
 }
 
 export interface MovieFeedback {

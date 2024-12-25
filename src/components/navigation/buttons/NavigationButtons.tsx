@@ -7,15 +7,18 @@ import Link from "../../../components/common/link/Link";
 const NavigationButton: FC<ButtonProps> = (props) => {
   return (
     <Stack gap={4} flexGrow={1} direction="row">
-      <Button>
-        <Link forwardTo="/movies">Фильмы</Link>
-      </Button>
-      <Button startIcon={<Glasses3DColored width={32} />}>
-        <Link forwardTo="/sessions">Сеансы</Link>
-      </Button>
-      <Button>
-        <Link forwardTo="/" withHash="#footer-section">Справочник</Link>
-      </Button>
+      <Link forwardTo="/movies">
+        <Button>Фильмы</Button>
+      </Link>
+      <Link forwardTo="/sessions">
+        <Button>Сеансы</Button>
+      </Link>
+      <Link forwardTo="/" withHash="#footer-section">
+        <Button>О Разработчиках</Button>
+      </Link>
+      <Link forwardTo="/info">
+        <Button>Справочник</Button>
+      </Link>
     </Stack>
   );
 };

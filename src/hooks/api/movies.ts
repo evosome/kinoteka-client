@@ -17,6 +17,7 @@ interface MovieDto {
   description: string;
   links: Array<{ id: number; link: string }>;
   countries: Array<{ countryName: string; linkPhoto: string }>;
+  sessions: Array<{ date: string, timeline: string, cinemaType: string }>;
 }
 
 const MAPPER = createMapper({

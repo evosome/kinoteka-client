@@ -29,8 +29,8 @@ const MoviesPage: FC<{}> = () => {
   return (
     <MoviesPageContainer>
       <Tabs value={selectedTab} onChange={handleChanged}>
-        <Tab label="Movies today"/>
-        <Tab label="Soon"/>
+        <Tab label="Фильмы сегодня"/>
+        <Tab label="Скоро"/>
       </Tabs>
       <MoviePanel index={0} selectedIndex={selectedTab}>
         <MovieList showReleased/>
