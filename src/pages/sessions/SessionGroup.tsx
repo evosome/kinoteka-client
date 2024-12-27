@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 import { FC } from "react";
 import {
   SessionDetailsContainer,
@@ -8,19 +8,22 @@ import {
 import { MovieCover } from "@components/movies/movie-cover";
 import { SessionItemProps } from "./types";
 import { MovieDetails } from "@components/movies/movie-details";
-import SessionTimesList from "./SessionTimesList";
+import SessionTime from "./SessionTime";
 
-const SessionGroup: FC<SessionItemProps> = ({ session }) => {
+const SessionGroup: FC<SessionItemProps> = ({ sessionGroup }) => {
+  const today = new Date();
   return (
     <SessionItemContainer gap={2} direction="row">
       <SessionDetailsContainer>
-        <MovieCover withAgeRestriction movie={session.movie} />
-        <MovieDetails movie={session.movie} />
+        <MovieCover withAgeRestriction needOpenMoviePage movie={sessionGroup.movie} />
+        <MovieDetails movie={sessionGroup.movie} />
       </SessionDetailsContainer>
-      <SessionTimesListContainer>
-        {session.timeList && (
-          <SessionTimesList sessionTimes={session.timeList} />
-        )}
+      <SessionTimesListContainer gap={2} direction="row">
+        {sessionGroup.sessions
+          .filter((session) => session.datetime > today)
+          .map((session) => (
+            <SessionTime movie={sessionGroup.movie} session={session} />
+          ))}
       </SessionTimesListContainer>
     </SessionItemContainer>
   );

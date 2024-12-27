@@ -1,10 +1,19 @@
-
+//@ts-nocheck
 import { FC } from "react";
 import { SessionsPageContainer } from "./styles";
-import { Button, Stack } from "@mui/material";
+import { Button, CircularProgress, Stack } from "@mui/material";
 import SessionGroup from "./SessionGroup";
+import { useGetSessions } from "@app/hooks/api/sessions";
 
 const SessionsPage: FC<{}> = () => {
+    const { grouppedSessions, isLoading } = useGetSessions();
+
+    if (isLoading) {
+        <SessionsPageContainer gap={2}>
+            <CircularProgress/>
+        </SessionsPageContainer>
+    }
+
     return (
         <SessionsPageContainer gap={2}>
             <Stack direction="row">
@@ -13,7 +22,7 @@ const SessionsPage: FC<{}> = () => {
                 </Button>
             </Stack>
             <Stack>
-                {/* { SESSIONS.map((session) => <SessionGroup session={session}/>) } */}
+                { grouppedSessions?.map((sessionGroup) => <SessionGroup sessionGroup={sessionGroup}/>) }
             </Stack>
         </SessionsPageContainer>
     );

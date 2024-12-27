@@ -85,3 +85,18 @@ export const usePostFeedback = () => {
     }
   }
 };
+
+export const useDeleteFeedback = () => {
+
+  const [status, setStatus] = useState(false);
+
+  return {
+    status,
+    doDelete: ({ movieId, userId, feedbackId }) => {
+      api
+        .delete(`${API_ROUTES.feedbacks}/${userId},${movieId},${feedbackId}`)
+        .then(() => setStatus(true));
+    }
+  }
+
+}

@@ -39,9 +39,35 @@ export interface SessionTime {
     format: string;
 }
 
+export enum SeatTypes {
+    VIP,
+    LOVESEAT,
+    COMMON,
+}
+
+export interface HallSeat {
+    type: SeatTypes;
+    marginLeft: number;
+}
+
+export interface HallRow {
+    margin: number;
+    seats: HallSeat[];
+}
+
+export interface HallLayout {
+    rows: HallRow[];
+}
+
 export interface Session {
-    movie: Movie;
     hall?: number;
-    date?: string;
-    timeList?: SessionTime[];
+    datetime?: Date; 
+    price?: number;
+    format?: string;
+    layout: HallLayout;
+}
+
+export interface SessionGroup {
+    movie: Movie;
+    sessions: Session[];
 }

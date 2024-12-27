@@ -5,7 +5,7 @@ import { pojos } from "@automapper/pojos";
 import { useMemo } from "react";
 import { Movie } from "@app/types/movie";
 
-interface MovieDto {
+export interface MovieDto {
   filmId: number;
   title: string;
   year: number;
@@ -20,7 +20,7 @@ interface MovieDto {
   sessions: Array<{ date: string, timeline: string, cinemaType: string }>;
 }
 
-const MAPPER = createMapper({
+export const MAPPER = createMapper({
   strategyInitializer: pojos(),
 });
 

@@ -33,7 +33,7 @@ const MovieCoverWrapper: FC<MovieCoverProps> = ({
   return (
     <>
       {(needOpenMoviePage) ? (
-        <Link forwardTo={`${movie.id}`}>
+        <Link forwardTo={`/movies/${movie.id}`}>
           <MovieCover {...props} />
         </Link>
       ) : (

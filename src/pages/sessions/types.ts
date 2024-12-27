@@ -1,12 +1,13 @@
 
-import { Session, SessionTime } from "../../types/movie";
+import { Movie, Session, SessionGroup, SessionTime } from "../../types/movie";
 
 export interface SessionItemProps {
-    session: Session;
+    sessionGroup: SessionGroup;
 }
 
 export interface SessionTimeProps {
-    sessionTime: SessionTime;
+    session: Session;
+    movie: Movie;
 }
 
 export interface SessionListProps {

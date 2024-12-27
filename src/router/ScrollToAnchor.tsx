@@ -16,7 +16,7 @@ const ScrollToAnchor: FC<{}> = () => {
       setTimeout(() => {
         document
           .getElementById(lastHash.current)
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+          ?.scrollIntoView({ block: 'center', behavior: "smooth" });
         lastHash.current = "";
       }, 100);
     }

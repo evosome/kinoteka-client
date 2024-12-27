@@ -17,7 +17,7 @@ const FeedbackSection: FC<FeedbackSectionProps> = ({ movie }) => {
     <Stack gap={2}>
       <UserFeedback movie={movie} user={user}/>
       <Divider flexItem orientation="horizontal"/>
-      <CommunityFeedback movieId={movie.id} user={user}/>
+      <CommunityFeedback movie={movie} user={user}/>
     </Stack>
   );
 };

@@ -21,6 +21,11 @@ const PageInfo: FC<{}> = () => {
               <Bookmark /> Вход в личный кабинет
             </Stack>
           </Link>
+          <Link forwardTo="/info" withHash="#movies" withDecoration>
+            <Stack gap={1} direction="row" alignItems="center">
+              <Bookmark /> Список фильмов
+            </Stack>
+          </Link>
         </List>
       </Stack>
       <Stack component="div" id="main-page">
@@ -41,7 +46,7 @@ const PageInfo: FC<{}> = () => {
           <Stack>
             <Typography>
               Пользователь может войти в свой аккаунт или создать новый при
-              нажатии на кнопку "войти" в панели навигации. При
+              нажатии на кнопку "Войти" в панели навигации. При
               нажатии на кнопку перед пользователем откроется модальное окно с
               двумя вкладками "Регистрация" и "Войти"
               Во вкладке регистрации пользователю потребуется ввести свое имя,
@@ -52,6 +57,51 @@ const PageInfo: FC<{}> = () => {
           <Stack gap={2} direction="row" justifyContent="center">
             <TextImage src="http://77.246.158.84:9000/images/register.png" />
             <TextImage src="http://77.246.158.84:9000/images/authed.png" />
+          </Stack>
+          <Stack>
+            <Typography>
+              Чтобы перейти в личный кабинет пользователя, следует нажать на
+              аватар пользователя, появившегося на месте кнопки "Войти".
+            </Typography>
+          </Stack>
+          <Stack gap={2} direction="row" justifyContent="center">
+            <TextImage src="http://77.246.158.84:9000/images/profile.png" />
+          </Stack>
+          <Stack>
+            <Typography>
+              Здесь пользователь может увидеть свою личную информацию, а также
+              редактировать ее, изменив значение полей. Также пользователь
+              может просмотреть список купленных билетов.
+            </Typography>
+          </Stack>
+        </Stack>
+      </Stack>
+      <Stack component="div" id="movies">
+        <Typography variant="h6">Список фильмов</Typography>
+        <Stack gap={2}>
+          <Stack>
+            <Typography>
+              Помимо секции авторизации в навигационной панели также есть
+              секция полезных ссылок, включающая: список фильмов, список сеансов,
+              информация о разработчиках, справочник.
+              Нажав на ссылку со списком фильмов, пользователь перейдет на страницу
+              фильмов. Здесь пользователь может видет список текущих фильмов в прокате,
+              и список будущих фильмов, которые выйдут совсем скоро.
+            </Typography>
+          </Stack>
+          <Stack gap={2} direction="row" justifyContent="center">
+            <TextImage src="http://77.246.158.84:9000/images/movies.png" />
+            <TextImage src="http://77.246.158.84:9000/images/movies-soon.png"/>
+          </Stack>
+          <Stack>
+            <Typography>
+              А также при нажатии на обложку фильма, пользователь может видеть
+              подробную информацию о фильме. Здесь пользователь может оставить
+              комментарий о фильме и обслуживании в кинотеатре.
+            </Typography>
+          </Stack>
+          <Stack gap={2} direction="row" justifyContent="center">
+            <TextImage src="http://77.246.158.84:9000/images/movie-details.png" />
           </Stack>
         </Stack>
       </Stack>

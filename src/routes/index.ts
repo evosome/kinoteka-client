@@ -11,5 +11,6 @@ export const API_ROUTES = {
     movies: `${GATEWAY}/api1/v1/film`,
     users: `${GATEWAY}/api1/v1/movieUser`,
     feedbacks: `${GATEWAY}/api1/v1/feedback`,
-    register: `${GATEWAY}/register`
+    register: `${GATEWAY}/register`,
+    sessions: `${GATEWAY}/api1/v1/session`
 }

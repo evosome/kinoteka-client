@@ -4,9 +4,10 @@ import React, { FC } from "react";
 import Feedback from "./Feedback";
 import { useGetFeedbackPaging } from "@app/hooks/api";
 import { User } from "@app/types/user";
+import { Movie } from "@app/types/movie";
 
-const CommunityFeedback: FC<{ movieId: number, user?: User }> = ({ movieId, user }) => {
-  const { isLoading, feedbacks } = useGetFeedbackPaging({ movieId });
+const CommunityFeedback: FC<{ movie: Movie, user?: User }> = ({ movie, user }) => {
+  const { isLoading, feedbacks } = useGetFeedbackPaging({ movieId: movie.id });
 
   if (isLoading) {
     return <CircularProgress />;
@@ -24,7 +25,7 @@ const CommunityFeedback: FC<{ movieId: number, user?: User }> = ({ movieId, user
         {feedbacks?.map(({ id, data }) => (
           <React.Fragment key={id}>
             {data.map((feedback) => (
-              <Feedback feedback={feedback} isYou={feedback.user.id === user?.id}/>
+              <Feedback movie={movie} feedback={feedback} isYou={feedback.user.id === user?.id}/>
             ))}
           </React.Fragment>
         ))}
