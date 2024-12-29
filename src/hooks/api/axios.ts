@@ -17,8 +17,8 @@ export const api = {
       },
       withCredentials: true,
     }),
-  patch: <T>(url: string, data: any) =>
-    axios.patch<T>(url, data, {
+  put: <T>(url: string, data: any) =>
+    axios.put<T>(url, data, {
       headers: {
         token: Cookies.get('JSESSIONID'),
       },

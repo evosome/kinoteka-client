@@ -146,7 +146,7 @@ export const useUpdate = <T, S>(
   updater?: (oldData: T, newData: S) => T
 ) => {
   return useGenericMutation<T, S>(
-    (data) => api.patch<S>(url, data),
+    (data) => api.put<S>(url, data),
     url,
     params,
     updater

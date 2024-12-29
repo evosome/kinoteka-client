@@ -14,10 +14,11 @@ interface HallLayoutDto {
 }
 
 interface SessionDto {
+  sessionId: number;
   date: string;
   cinemaType: string;
   price: number;
-  filmFk: MovieDto;
+  filmFromSession: MovieDto;
   hallsFk: {
     hallsId: number;
     hallLayout: {
@@ -34,6 +35,10 @@ createMap<SessionDto, Session>(
   MAPPER,
   "SessionDto",
   "Session",
+  forMember(
+    (destination) => destination.id,
+    mapFrom((source) => source.sessionId)
+  ),
   forMember(
     (destination) => destination.datetime,
     mapFrom((source) => new Date(source.date))
@@ -78,10 +83,10 @@ export const useGetSessions = () => {
   const grouppedSessions = useMemo(() => {
     if (isLoading) return undefined;
     return Object.entries(
-      groupBy(data!, (session) => session.filmFk.filmId)
+      groupBy(data!.filter((session) => !!session.filmFromSession), (session) => session.filmFromSession.filmId)
     ).map(([k, v]) => ({
       movie: MOVIE_MAPPER.map<MovieDto, Movie>(
-        v.find((session) => session.filmFk.filmId === parseInt(k))?.filmFk!,
+        v.find((session) => session.filmFromSession.filmId === parseInt(k))?.filmFromSession!,
         "MovieDto",
         "Movie"
       ),

@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { UserPageContainer } from "./styles";
-import { useGetMe, useLogout } from "@app/hooks/api/users";
+import { useEditUserDetails, useGetMe, useLogout } from "@app/hooks/api/users";
 import { useNavigate } from "react-router";
 
 interface MoviePanelProps {
@@ -27,6 +27,7 @@ const TabPanel: FC<MoviePanelProps & ContainerProps> = (props) => {
 };
 
 const UserDetails: FC<{}> = () => {
+  const [loaded, setLoaded] = useState(false);
   const [tab, setTab] = useState(0);
   const { status, doLogout } = useLogout();
   const navigate = useNavigate();
@@ -38,6 +39,8 @@ const UserDetails: FC<{}> = () => {
 
   const { user, isLoading } = useGetMe();
 
+  const { status: editStatus, doEdit } = useEditUserDetails({ id: user?.id });
+
   useEffect(() => {
     if (status) {
       navigate("/");
@@ -46,10 +49,18 @@ const UserDetails: FC<{}> = () => {
   }, [status]);
 
   useEffect(() => {
-    if (!isLoading && user) {
+    if (editStatus) {
+      window.location.reload();
+    }
+  }, [editStatus]);
+
+  useEffect(() => {
+    if (!isLoading && !loaded && user) {
+      console.log("1");
       setName(user.name);
       setSurname(user.surname);
       setPhone(user.details.telephoneNumber);
+      setLoaded(true);
     }
   }, [user, isLoading]);
 
@@ -95,23 +106,50 @@ const UserDetails: FC<{}> = () => {
           <Stack gap={2} alignItems="end">
             <Stack gap={2} direction="row" alignItems="center">
               <Typography>Имя:</Typography>
-              <TextField value={name} variant="outlined" />
+              <TextField
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                variant="outlined"
+              />
             </Stack>
             <Stack gap={2} direction="row" alignItems="center">
               <Typography>Фамилия:</Typography>
-              <TextField value={surname} variant="outlined" />
+              <TextField
+                value={surname}
+                onChange={(event) => setSurname(event.target.value)}
+                variant="outlined"
+              />
             </Stack>
             <Stack gap={2} direction="row" alignItems="center">
               <Typography>Номер телефона:</Typography>
-              <TextField value={phone} variant="outlined" />
+              <TextField
+                value={phone}
+                onChange={(event) => setPhone(event.target.value)}
+                variant="outlined"
+              />
             </Stack>
             <Stack gap={2} direction="row" alignItems="center">
               <Typography>E-mail:</Typography>
-              <TextField value={email} variant="outlined" />
+              <TextField
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                variant="outlined"
+              />
             </Stack>
             <Stack gap={2} direction="row">
               <Button onClick={() => doLogout()}>Выйти из аккаунта</Button>
-              <Button disabled>Сохранить настройки</Button>
+              <Button
+                onClick={() => {
+                  doEdit({
+                    name,
+                    surname,
+                    email,
+                    phoneNumber: phone,
+                  });
+                }}
+              >
+                Сохранить настройки
+              </Button>
             </Stack>
           </Stack>
         </TabPanel>

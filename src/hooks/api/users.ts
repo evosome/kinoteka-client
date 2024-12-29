@@ -1,5 +1,6 @@
+//@ts-nocheck
 import { API_ROUTES } from "@app/routes";
-import { useFetch } from "./reactQuery";
+import { useFetch, usePost, useUpdate } from "./reactQuery";
 import {
   createMap,
   createMapper,
@@ -11,6 +12,7 @@ import { pojos } from "@automapper/pojos";
 import { User, UserDetails } from "@app/types/user";
 import { useMemo, useState } from "react";
 import { api } from "./axios";
+import { useQueryClient } from "react-query";
 
 export interface UserDto {
   userId: number;
@@ -53,23 +55,32 @@ createMap<UserDto, User>(
 );
 
 export const useGetMe = () => {
-  const { data, isLoading } = useFetch<UserDto>(
+  const { data, isLoading, refetch } = useFetch<UserDto>(
     `${API_ROUTES.users}/me`,
     {},
     {
       retry: false,
+      refetchOnWindowFocus: true,
     }
   );
 
-  const user = useMemo(
-    () =>
-      !isLoading
-        ? MAPPER.map<UserDto, User>(data!, "UserDto", "User")
-        : undefined,
-    [data, isLoading]
-  );
+  const queryClient = useQueryClient();
 
-  return { isLoading, user };
+  const user = useMemo(() => {
+    if (isLoading) {
+      return;
+    }
+    queryClient
+      .invalidateQueries({
+        queryKey: `${API_ROUTES.users}/me`,
+        exact: true,
+        refetchActive: true,
+      })
+      .then();
+    return MAPPER.map<UserDto, User>(data!, "UserDto", "User");
+  }, [data, isLoading]);
+
+  return { isLoading, user, refetch };
 };
 
 export const useLogin = () => {
@@ -141,10 +152,31 @@ export const useRegister = () => {
       surname: string;
     }) => {
       api
-        .post(API_ROUTES.register, { username, password, name, surName: surname })
+        .post(API_ROUTES.register, {
+          username,
+          password,
+          name,
+          surName: surname,
+        })
         .then((responce) => {
           setStatus(true);
         });
     },
+  };
+};
+
+export const useEditUserDetails = ({ id }) => {
+  const [status, setStatus] = useState<boolean>(false);
+  const { mutate } = useUpdate(`${API_ROUTES.users}/${id}`);
+
+  return {
+    status,
+    doEdit: ({ name, surname, phoneNumber, email }) =>
+      mutate({
+        name: name,
+        surName: surname,
+        email: email,
+        telephoneNumber: phoneNumber,
+      })
   };
 };

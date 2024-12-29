@@ -30,8 +30,10 @@ export const SessionTimeContainer = styled(Stack)(({ theme }) => ({
     cursor: 'pointer'
 }));
 
-export const Seat = styled(Typography)(({ theme }) => ({
+export const Seat = styled(Typography)<{ seatColor: string, selected?: boolean }>(({ theme, seatColor, selected }) => ({
     padding: '2px',
-    border: '1px solid #000',
     borderRadius: '4px',
+    backgroundColor: seatColor,
+    filter: `brightness(${ selected ? '80%' : '100%' })`,
+    boxShadow: `0px 0px 8px 0px ${seatColor}`
 }))

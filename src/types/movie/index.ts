@@ -60,6 +60,7 @@ export interface HallLayout {
 }
 
 export interface Session {
+    id: number,
     hall?: number;
     datetime?: Date; 
     price?: number;
