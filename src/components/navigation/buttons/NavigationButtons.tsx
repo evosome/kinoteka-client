@@ -17,7 +17,7 @@ const NavigationButton: FC<ButtonProps> = (props) => {
         <Button>О Разработчиках</Button>
       </Link>
       <Link forwardTo="/info">
-        <Button>Справочник</Button>
+        <Button>Сведения о системе</Button>
       </Link>
     </Stack>
   );

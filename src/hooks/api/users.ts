@@ -22,6 +22,7 @@ export interface UserDto {
   username: string;
   telephoneNumber: string;
   userImage?: string | undefined;
+  moviesWatched: Array<{ ticketId: number, price: number }>;
 }
 
 const MAPPER = createMapper({
@@ -51,6 +52,13 @@ createMap<UserDto, User>(
   forMember(
     (destination) => destination.surname,
     mapFrom((source) => source.surName)
+  ),
+  forMember(
+    (destination) => destination.tickets,
+    mapFrom((source) => source.moviesWatched ? source.moviesWatched.map((ticket) => ({
+      id: ticket.ticketId,
+      price: ticket.price,
+    })): [])
   )
 );
 

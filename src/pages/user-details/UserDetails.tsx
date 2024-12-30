@@ -12,9 +12,15 @@ import {
   Typography,
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
-import { UserPageContainer } from "./styles";
+import { Ticket, UserPageContainer } from "./styles";
 import { useEditUserDetails, useGetMe, useLogout } from "@app/hooks/api/users";
-import { useNavigate } from "react-router";
+import {
+  useLocation,
+  useNavigate,
+  useNavigation,
+  useParams,
+  useSearchParams,
+} from "react-router";
 
 interface MoviePanelProps {
   index: number;
@@ -27,10 +33,14 @@ const TabPanel: FC<MoviePanelProps & ContainerProps> = (props) => {
 };
 
 const UserDetails: FC<{}> = () => {
+  const [params, _] = useSearchParams();
+
   const [loaded, setLoaded] = useState(false);
   const [tab, setTab] = useState(0);
   const { status, doLogout } = useLogout();
   const navigate = useNavigate();
+
+  console.log(params);
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -40,6 +50,12 @@ const UserDetails: FC<{}> = () => {
   const { user, isLoading } = useGetMe();
 
   const { status: editStatus, doEdit } = useEditUserDetails({ id: user?.id });
+
+  useEffect(() => {
+    if (params.has("tickets")) {
+      setTab(1);
+    }
+  }, [params]);
 
   useEffect(() => {
     if (status) {
@@ -153,7 +169,23 @@ const UserDetails: FC<{}> = () => {
             </Stack>
           </Stack>
         </TabPanel>
-        <TabPanel index={tab} selectedIndex={1}></TabPanel>
+        <TabPanel index={tab} selectedIndex={1}>
+          <Typography>Список билетов</Typography>
+          <Stack>
+            {user && user.tickets.map((ticket) => <Ticket>
+              <Stack direction="row">
+                <Stack>
+                  image goes here
+                </Stack>
+                <Stack>
+                  <Typography>name</Typography>
+                  <Typography>Цена: {ticket.price} руб.</Typography>
+                  <Typography>ID: {ticket.id}</Typography>
+                </Stack>
+              </Stack>
+            </Ticket>)}
+          </Stack>
+        </TabPanel>
       </Stack>
     </UserPageContainer>
   );

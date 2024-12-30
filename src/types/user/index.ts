@@ -1,3 +1,4 @@
+import { Ticket } from "../ticket";
 
 export interface UserDetails {
     login: string;
@@ -10,4 +11,5 @@ export interface User {
     name: string;
     surname: string;
     details: UserDetails;
+    tickets: Ticket[];
 }

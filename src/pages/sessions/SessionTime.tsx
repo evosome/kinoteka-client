@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -20,6 +20,7 @@ import { SeatTypes } from "@app/types/movie";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Tooltip } from "@app/components/common/tooltip";
 import { usePostTickets } from "@app/hooks/api/tickets";
+import { useNavigate } from "react-router";
 
 const SEAT_DEFAULT_WIDTH = 50;
 const SEAT_DEFAULT_HEIGHT = 50;
@@ -41,6 +42,17 @@ const SessionTime: FC<SessionTimeProps> = ({ session, movie }) => {
 
   const { user, isLoading } = useGetMe();
   const { status: ticketStatus, doPost } = usePostTickets();
+
+  const navigate = useNavigate();
+
+  useEffect(
+    () => {
+      if (ticketStatus) {
+        navigate("/user?tickets")
+      }
+    },
+    [ticketStatus]
+  );
 
   return (
     <>
@@ -220,9 +232,13 @@ const SessionTime: FC<SessionTimeProps> = ({ session, movie }) => {
                                   doPost({
                                     sessionId: session.id,
                                     userId: user.id,
-                                    row: selectedPlace.row,
-                                    place: selectedPlace.seat,
                                     price: selectedPlace.price,
+                                    seats: [
+                                      {
+                                        row: selectedPlace.row,
+                                        place: selectedPlace.seat,
+                                      }
+                                    ]
                                   })
                                 }
                               >

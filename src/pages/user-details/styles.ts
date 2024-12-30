@@ -5,3 +5,8 @@ export const UserPageContainer = styled(Stack)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center'
 }));
+
+export const Ticket = styled(Stack)(({ theme }) => ({
+    height: '96px',
+    border: '1px solid #000',
+}));
